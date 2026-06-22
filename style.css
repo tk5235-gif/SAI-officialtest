@@ -339,9 +339,6 @@ section { padding: clamp(5rem, 12vw, 11rem) clamp(1.5rem, 6vw, 6rem); position: 
     border: 1px solid var(--line); padding: 0.4rem 1rem; border-radius: 100px;
     color: var(--ink-dim);
 }
-}
-
-
 
 /* ============================================================
    ④ MESSAGE
@@ -986,4 +983,166 @@ body { color: #FFFFFF !important; }
 }
 @media (max-width: 480px) {
     .num-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ============================================================
+   要件1：ミッションテキスト中央揃え・2行固定
+   ============================================================ */
+.phil-main.centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.phil-main.centered br {
+    display: inline;
+}
+
+/* ============================================================
+   要件2：VALUEカード タイトル1行・説明文2行固定
+   ============================================================ */
+.value-grid-6 .value-card h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.value-grid-6 .value-desc {
+    display: block;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    line-height: 1.85;
+    min-height: 3.7em; /* 2行分の高さを固定 */
+}
+.value-grid-6 .value-desc br {
+    display: block;
+    content: "";
+}
+
+/* ============================================================
+   要件3：RECRUITセクション 左上揃え統一
+   ============================================================ */
+.recruit-inner.align-top-left {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.recruit-inner.align-top-left .recruit-catch {
+    white-space: nowrap;
+}
+
+/* ============================================================
+   要件4：新規セクション service-reel / timetable
+   ============================================================ */
+
+/* --- service-reel：提供サービス一覧 --- */
+.service-reel { background: var(--black-2); }
+.service-reel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+.service-reel-card {
+    border: 1px solid var(--line);
+    padding: 2rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    transition: border-color 0.5s, transform 0.5s var(--ease);
+}
+.service-reel-card:hover {
+    border-color: rgba(211,0,55,0.4);
+    transform: translateY(-5px);
+}
+.service-reel-ph {
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--line);
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px), linear-gradient(135deg, rgba(25,47,97,0.15), rgba(211,0,55,0.08));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+}
+.service-reel-tag {
+    font-family: var(--display);
+    font-size: 0.78rem;
+    color: #FF1A4D;
+    letter-spacing: 0.2em;
+}
+.service-reel-title {
+    font-family: var(--mincho);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0.6rem 0 0.8rem;
+    color: #FFFFFF;
+}
+.service-reel-desc {
+    font-family: var(--mincho);
+    font-size: 0.95rem;
+    color: #EDEDF0;
+    line-height: 1.85;
+}
+
+/* --- timetable：事業部別タイムスケジュール --- */
+.timetable { max-width: 900px; margin: 0 auto clamp(4rem, 8vw, 6rem); }
+.timetable-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0;
+}
+.timetable-tab {
+    font-family: var(--mincho);
+    font-size: 0.95rem;
+    color: #B8BCC8;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s, border-color 0.3s;
+}
+.timetable-tab:hover { color: #FFFFFF; }
+.timetable-tab.is-active {
+    color: #FFFFFF;
+    border-bottom-color: #FF1A4D;
+}
+.timetable-panel { display: none; }
+.timetable-panel.is-active {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+.timetable-ph {
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--line);
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px), linear-gradient(135deg, rgba(25,47,97,0.15), rgba(211,0,55,0.08));
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* ============================================================
+   要件5：モバイル向けレイアウト調整（768px以下）
+   ============================================================ */
+@media (max-width: 768px) {
+    .service-reel-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .timetable-tabs { gap: 0.3rem; }
+    .timetable-tab { font-size: 0.85rem; padding: 0.6rem 0.8rem; flex: 1 1 auto; text-align: center; }
+    .timetable-panel.is-active { grid-template-columns: 1fr; gap: 1.2rem; }
+    .timetable-ph { aspect-ratio: 16 / 9; max-height: 220px; }
+    .recruit-inner.align-top-left .recruit-catch { white-space: normal; }
+    .phil-main.centered { font-size: clamp(1.7rem, 5vw, 2.4rem) !important; }
+    .value-grid-6 .value-card h4 { white-space: normal !important; }
+    .value-grid-6 .value-desc { min-height: auto; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .service-reel-grid { grid-template-columns: repeat(2, 1fr); }
+    .timetable-panel.is-active { grid-template-columns: 240px 1fr; }
+}
+
+@media (min-width: 1025px) {
+    .service-reel-grid { grid-template-columns: repeat(3, 1fr); }
 }

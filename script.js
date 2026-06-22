@@ -160,4 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ── timetable：事業部別タブ切り替え ── */
+    const timetableTabs = document.querySelectorAll('.timetable-tab');
+    const timetablePanels = document.querySelectorAll('.timetable-panel');
+    timetableTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const dept = tab.dataset.dept;
+            timetableTabs.forEach(t => {
+                t.classList.toggle('is-active', t === tab);
+                t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+            });
+            timetablePanels.forEach(p => {
+                p.classList.toggle('is-active', p.dataset.dept === dept);
+            });
+        });
+    });
+
 });
