@@ -196,9 +196,7 @@ main, .header, .footer { position: relative; z-index: 2; }
 .hero-copy .line > span { display: block; }
 .hero-copy em {
     font-style: normal;
-    background: linear-gradient(100deg, var(--red), var(--navy-light));
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FF1A4D;
 }
 .hero-lead {
     margin-top: 2.5rem;
@@ -633,9 +631,8 @@ section { padding: clamp(5rem, 12vw, 11rem) clamp(1.5rem, 6vw, 6rem); position: 
 
 /* ハイライト（赤・白）を強める */
 .hero-copy em {
-    background: linear-gradient(100deg, #FF1A4D, #4A6FB5) !important;
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FF1A4D !important;
+    -webkit-text-fill-color: #FF1A4D !important;
     font-weight: 800;
 }
 .phil-label, .value-num, .service-no, .dept-no, .mem-role, .sec-num {
@@ -761,4 +758,57 @@ section { padding: clamp(5rem, 12vw, 11rem) clamp(1.5rem, 6vw, 6rem); position: 
 }
 @media (max-width: 480px) {
     .career-steps { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   修正：明朝統一・完全白・視認性UP
+   ============================================================ */
+
+/* ⑤ フォントを明朝で完全統一 */
+body, p, li, dd, dt, span, a, h1, h2, h3, h4, h5,
+.phil-text, .phil-mini p, .phil-mini h4, .value-desc, .value-sub,
+.service-text, .service-tags li, .message-text, .mem-comment,
+.mem-name, .mem-role, .dept-name, .dept-intro-card p, .dept-intro-card h3,
+.strength-card p, .strength-card h3, .timeline-body h4, .timeline-body p,
+.env-office-text, .company-table dt, .company-table dd, .num-label,
+.recruit-text, .recruit-catch, .hero-lead, .phil-values-lead, .env-subtitle {
+    font-family: var(--mincho) !important;
+}
+/* 英字見出し・番号は装飾セリフのまま残す（明朝と相性良い） */
+.sec-en, .hero-eyebrow, .nav-pc a, .nav-mobile a,
+.header-logo-text, .num-val, .num-suffix {
+    font-family: var(--display) !important;
+}
+
+/* ⑥ 視認性：本文を完全な白〜明るいグレーに */
+body { color: #FFFFFF !important; }
+.phil-text, .value-desc, .service-text, .message-text, .mem-comment,
+.dept-intro-card p, .strength-card p, .timeline-body p, .env-office-text,
+.company-table dd, .phil-mini p {
+    color: #EDEDF0 !important;
+}
+.service-tags li, .num-label { color: #DADDE5 !important; }
+
+/* ③ メンバー写真プレースホルダーの文字を白に */
+.mem-photo .ph-label, .service-ph .ph-label, .office-ph .ph-label {
+    color: #FFFFFF !important;
+    opacity: 0.85;
+}
+
+/* 01〜06 など番号フォントを少し大きく */
+.sec-num { font-size: 1.1rem !important; }
+.value-num, .strength-no, .dept-no, .career-step-no, .dept-intro-no, .service-no {
+    font-size: 1.05rem !important;
+}
+.dept-intro-no { font-size: 2.9rem !important; }
+.nav-num { font-size: 0.7rem !important; }
+
+/* 6つの価値観：見出しを各1行で表示 */
+.value-grid-6 .value-card h4 {
+    white-space: nowrap !important;
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem) !important;
+    letter-spacing: 0 !important;
+}
+@media (max-width: 900px) {
+    .value-grid-6 .value-card h4 { white-space: normal !important; font-size: 1.2rem !important; }
 }
