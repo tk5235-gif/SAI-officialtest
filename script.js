@@ -82,30 +82,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let w, h, particles = [], mouse = { x: -999, y: -999 };
 
-    const colors = ['rgba(211,0,55,', 'rgba(42,68,128,', 'rgba(255,255,255,'];
+    // 星の色：白を主体に、青白・淡青を散らし、ごく稀に赤のアクセント
+    const colors = [
+        'rgba(255,255,255,', 'rgba(255,255,255,', 'rgba(255,255,255,',
+        'rgba(206,221,255,', 'rgba(150,185,255,', 'rgba(255,170,190,'
+    ];
 
     function resize() {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
     }
     function initParticles() {
-        const count = Math.min(Math.floor((w * h) / 16000), 90);
+        // 密度アップで夜空らしく（上限も引き上げ）
+        const count = Math.min(Math.floor((w * h) / 9000), 170);
         particles = [];
         for (let i = 0; i < count; i++) {
+            const bright = Math.random() < 0.16; // 一部を明るい輝星に
             particles.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
-                vx: (Math.random() - 0.5) * 0.35,
-                vy: (Math.random() - 0.5) * 0.35,
-                r: Math.random() * 1.6 + 0.4,
-                c: colors[Math.floor(Math.random() * colors.length)],
-                a: Math.random() * 0.5 + 0.2
+                vx: (Math.random() - 0.5) * 0.22,
+                vy: (Math.random() - 0.5) * 0.22,
+                r: bright ? Math.random() * 1.4 + 1.3 : Math.random() * 1.1 + 0.3,
+                c: bright ? 'rgba(255,255,255,' : colors[Math.floor(Math.random() * colors.length)],
+                a: Math.random() * 0.45 + (bright ? 0.45 : 0.25),
+                bright: bright,
+                // 瞬き（twinkle）用の位相と速さ
+                tw: Math.random() * Math.PI * 2,
+                tws: Math.random() * 0.04 + 0.012
             });
         }
     }
     function draw() {
         ctx.clearRect(0, 0, w, h);
-        // 線
+        // 線（星座のように近い星をうっすら結ぶ）
         for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
             p.x += p.vx; p.y += p.vy;
@@ -125,17 +135,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 const d = Math.hypot(p.x - q.x, p.y - q.y);
                 if (d < 130) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(255,255,255,${(1 - d / 130) * 0.08})`;
+                    ctx.strokeStyle = `rgba(255,255,255,${(1 - d / 130) * 0.06})`;
                     ctx.lineWidth = 0.5;
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(q.x, q.y);
                     ctx.stroke();
                 }
             }
+            // 瞬き：alpha を時間で揺らす
+            p.tw += p.tws;
+            const twinkle = 0.65 + 0.35 * Math.sin(p.tw);
+            const alpha = Math.min(p.a * twinkle, 1);
+            if (p.bright) {
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = 'rgba(180,205,255,0.9)';
+            }
             ctx.beginPath();
-            ctx.fillStyle = p.c + p.a + ')';
+            ctx.fillStyle = p.c + alpha.toFixed(3) + ')';
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
             ctx.fill();
+            ctx.shadowBlur = 0;
         }
         requestAnimationFrame(draw);
     }
