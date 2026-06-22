@@ -1237,3 +1237,11 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
     body::before { animation: none; opacity: 0.7; }
 }
+
+/* ============================================================
+   要件8：MISSION ミニカード説明文を文節区切りで2行に収める
+   （列幅256pxに15文字が収まるよう、説明文をわずかに縮小）
+   ============================================================ */
+.phil-block:not(.vision-block) .phil-mini p {
+    font-size: 1rem !important;
+}
