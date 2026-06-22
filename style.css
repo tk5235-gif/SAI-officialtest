@@ -339,6 +339,58 @@ section { padding: clamp(5rem, 12vw, 11rem) clamp(1.5rem, 6vw, 6rem); position: 
     border: 1px solid var(--line); padding: 0.4rem 1rem; border-radius: 100px;
     color: var(--ink-dim);
 }
+/* ------------------------------------------------------------
+   Service Reels (Custom Services)
+   ------------------------------------------------------------ */
+.service-reel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.service-reel .reel-item {
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  transition: border-color 0.5s, transform 0.5s var(--ease), background 0.5s;
+}
+.service-reel .reel-item:hover {
+  border-color: rgba(211,0,55,0.5);
+  transform: translateY(-6px);
+  background: linear-gradient(180deg, rgba(211,0,55,0.06), transparent);
+}
+.reel-title {
+  font-family: var(--mincho);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  margin: 1rem 0 0.5rem;
+  letter-spacing: 0.03em;
+}
+.reel-desc {
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+  line-height: 2;
+}
+
+/* Environment Section Image Placeholder */
+.env-photo {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px),
+              linear-gradient(135deg, rgba(25,47,97,0.15), rgba(211,0,55,0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.env-photo::before {
+  content: 'IMAGE';
+  font-family: var(--display);
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+  opacity: 0.8;
+}
 
 /* ============================================================
    ④ MESSAGE
@@ -952,3 +1004,35 @@ body { color: #FFFFFF !important; }
 /* ⑤ プロフェッショナル文を確実に2行表示（潰さない） */
 .phil-main br { display: inline !important; }
 .phil-main { white-space: normal !important; }
+
+/* ============================================================
+   修正5：数字で見るSAI 見切れ解消・間隔拡大
+   ============================================================ */
+.num-grid {
+    gap: 1.5rem !important;
+    background: transparent !important;
+    border: none !important;
+    max-width: 1200px !important;
+}
+.num-card {
+    background: var(--black-2) !important;
+    border: 1px solid var(--line) !important;
+    padding: clamp(3rem, 5vw, 4.5rem) 1.5rem !important;
+    gap: 1rem !important;
+    border-radius: 4px !important;
+}
+.num-val {
+    font-size: clamp(2.6rem, 6vw, 4.5rem) !important;
+    line-height: 1.25 !important;
+    padding: 0 0.2rem !important;
+    overflow: visible !important;
+}
+.num-suffix { margin-top: -0.5rem !important; }
+.num-label { font-size: 1rem !important; margin-top: 0.3rem !important; }
+
+@media (max-width: 900px) {
+    .num-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1.2rem !important; }
+}
+@media (max-width: 480px) {
+    .num-grid { grid-template-columns: 1fr !important; }
+}
