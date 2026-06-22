@@ -146,4 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         resize(); initParticles(); draw();
     }
+
+    /* ── 部署アコーディオン ── */
+    const deptToggles = document.querySelectorAll('.dept-toggle');
+    deptToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const wrap = btn.nextElementSibling;
+            const open = btn.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (wrap && wrap.classList.contains('dept-members-wrap')) {
+                wrap.classList.toggle('is-open', open);
+            }
+        });
+    });
+
 });
