@@ -904,3 +904,51 @@ body { color: #FFFFFF !important; }
     .service-ph { aspect-ratio: 4 / 5 !important; max-height: 420px !important; }
     .mem-photo { flex: 0 0 150px !important; width: 150px !important; height: 200px !important; }
 }
+
+/* ============================================================
+   修正4：プレースホルダーサイズ・事業部番号赤・理念サイズ・2行
+   ============================================================ */
+
+/* ① プレースホルダー文字「IMAGE」を見やすく */
+.ph-label {
+    font-family: var(--display) !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.3em !important;
+    color: #FFFFFF !important;
+    opacity: 0.85 !important;
+}
+
+/* ① メンバー写真：上半身が映る縦長サイズで確実に */
+.mem-photo {
+    flex: 0 0 180px !important;
+    width: 180px !important;
+    height: 240px !important;
+    border: 1px solid var(--line) !important;
+}
+/* サービス・CEO・オフィスのプレースホルダー比率 */
+.service-ph { aspect-ratio: 3 / 4 !important; }
+.ceo-photo, .message-photo .service-ph { aspect-ratio: 3 / 4 !important; }
+.office-ph { aspect-ratio: 3 / 4 !important; }
+
+/* ② 事業部紹介の番号01〜04をHEROの「創造」と同じ赤に */
+.dept-intro-no {
+    color: #FF1A4D !important;
+    -webkit-text-fill-color: #FF1A4D !important;
+    opacity: 1 !important;
+}
+
+/* ④ MISSION/VISION/VALUE 全体をさらにサイズアップ */
+.phil-main {
+    font-size: clamp(2rem, 5.5vw, 3.8rem) !important;
+    line-height: 1.5 !important;
+}
+.phil-label {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem) !important;
+}
+.phil-text {
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem) !important;
+}
+
+/* ⑤ プロフェッショナル文を確実に2行表示（潰さない） */
+.phil-main br { display: inline !important; }
+.phil-main { white-space: normal !important; }
