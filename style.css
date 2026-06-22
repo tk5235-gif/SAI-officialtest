@@ -865,3 +865,42 @@ body { color: #FFFFFF !important; }
 .dept-intro-card p, .strength-card p { color: #FFFFFF !important; }
 .timeline-body h4, .timeline-body p { color: #FFFFFF !important; }
 .env-office-text { color: #FFFFFF !important; }
+
+/* ============================================================
+   修正3：赤ラベル2倍・マーキー色・写真サイズ
+   ============================================================ */
+
+/* ④ MISSION/VISION/VALUEの赤ラベルを2倍に */
+.phil-label {
+    font-size: clamp(1.6rem, 4vw, 2.4rem) !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 2rem !important;
+    color: #FF1A4D !important;
+}
+
+/* ⑤ 流れる文字を明るいネイビーに（黒と同化させない） */
+.marquee { background: #14141A !important; }
+.marquee-word {
+    color: #6B8FD4 !important;
+    -webkit-text-fill-color: #6B8FD4 !important;
+}
+.marquee-reverse .marquee-word {
+    color: #7B9DDD !important;
+    -webkit-text-fill-color: #7B9DDD !important;
+}
+.marquee-dot { color: #FF1A4D !important; }
+
+/* ⑥ 写真プレースホルダーを上半身が映るサイズに（縦長大きめ） */
+.mem-photo {
+    flex: 0 0 180px !important;
+    width: 180px !important;
+    height: 240px !important;
+}
+.mem-card { gap: 2rem !important; align-items: flex-start !important; }
+
+/* サービス画像枠も上半身が映る縦長に */
+.service-ph { aspect-ratio: 3 / 4 !important; }
+@media (max-width: 900px) {
+    .service-ph { aspect-ratio: 4 / 5 !important; max-height: 420px !important; }
+    .mem-photo { flex: 0 0 150px !important; width: 150px !important; height: 200px !important; }
+}
