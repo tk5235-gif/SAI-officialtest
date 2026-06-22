@@ -4,8 +4,8 @@
    ============================================================ */
 
 :root {
-    --black: #0A0A0C;
-    --black-2: #111114;
+    --black: #0F1422;
+    --black-2: #151B2B;
     --ink: #F2F2F0;
     --ink-dim: #9A9AA0;
     --red: #D30037;
@@ -879,7 +879,7 @@ body { color: #FFFFFF !important; }
 }
 
 /* ⑤ 流れる文字を明るいネイビーに（黒と同化させない） */
-.marquee { background: #14141A !important; }
+.marquee { background: #1A2236 !important; }
 .marquee-word {
     color: #6B8FD4 !important;
     -webkit-text-fill-color: #6B8FD4 !important;
