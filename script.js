@@ -1,11 +1,19 @@
+/* ── リロード時は必ずページ先頭へ（#アンカー指定がある場合はその位置を尊重） ── */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('load', () => {
+    if (!location.hash) window.scrollTo(0, 0);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ── ローダー ── */
     const loader = document.getElementById('loader');
-    window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('is-hidden'), 1400);
-    });
-    setTimeout(() => loader.classList.add('is-hidden'), 2600); // フォールバック
+    if (loader) {
+        window.addEventListener('load', () => {
+            setTimeout(() => loader.classList.add('is-hidden'), 1400);
+        });
+        setTimeout(() => loader.classList.add('is-hidden'), 2600); // フォールバック
+    }
 
     /* ── ヘッダー スクロール ── */
     const header = document.getElementById('header');
@@ -194,5 +202,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    /* ── 働き方ページ：職種タブ切り替え（営業 / CS） ── */
+    const wsTabs = document.querySelectorAll('.ws-tab');
+    const wsPanels = document.querySelectorAll('.ws-panel');
+    if (wsTabs.length && wsPanels.length) {
+        const wsActivate = (role) => {
+            wsTabs.forEach(t => t.classList.toggle('is-active', t.dataset.role === role));
+            wsPanels.forEach(p => p.classList.toggle('is-active', p.dataset.role === role));
+        };
+        wsTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                wsActivate(tab.dataset.role);
+                history.replaceState(null, '', '#' + tab.dataset.role);
+                const hero = document.querySelector('.ws-hero');
+                if (hero) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        // URLハッシュ（#cs / #sales）で初期タブを選択
+        const initRole = location.hash === '#cs' ? 'cs' : (location.hash === '#sales' ? 'sales' : null);
+        if (initRole) wsActivate(initRole);
+    }
 
 });

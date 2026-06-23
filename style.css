@@ -1351,3 +1351,298 @@ body::before {
 @media (min-width: 901px) {
     .value-grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+/* ============================================================
+   要件14：プライバシーポリシー（legal）ページ
+   現行サイトと同じ星空背景・トーンに統一。固定ヘッダー分の余白を確保。
+   ============================================================ */
+.legal {
+    background: rgba(15, 20, 34, 0.84); /* 背景の星を透かす（他セクションと統一） */
+    padding-top: clamp(7rem, 14vw, 12rem);
+}
+.legal-body {
+    max-width: 800px; margin: 0 auto;
+    font-family: var(--mincho);
+}
+.legal-intro {
+    font-size: 1rem; color: #EDEDF0; line-height: 2;
+    margin-bottom: 3rem; padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+}
+.legal-article { margin-bottom: 2.5rem; }
+.legal-article h3 {
+    font-family: var(--mincho); font-weight: 700;
+    font-size: 1.2rem; color: #FFFFFF;
+    margin-bottom: 1rem; padding-left: 1rem;
+    border-left: 3px solid #FF1A4D;
+}
+.legal-article p {
+    font-size: 0.95rem; color: #EDEDF0; line-height: 1.95;
+}
+.legal-list { margin: 1rem 0 0 1.2rem; }
+.legal-list li {
+    font-size: 0.92rem; color: #EDEDF0; line-height: 1.9;
+    margin-bottom: 0.6rem; list-style: disc;
+}
+.legal-contact-box {
+    margin-top: 1.2rem; padding: 1.5rem;
+    border: 1px solid var(--line); background: rgba(21, 27, 43, 0.6);
+}
+.legal-contact-box p { font-size: 0.92rem; color: #EDEDF0; margin-bottom: 0.5rem; }
+.legal-note { font-size: 0.8rem !important; color: #9A9AA0 !important; }
+.legal-date {
+    font-size: 0.85rem; color: #9A9AA0; text-align: right;
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) {
+    .legal-article h3 { font-size: 1.05rem; }
+    .legal-article p, .legal-list li { font-size: 0.9rem; }
+}
+
+/* メンバー各部署 → 働き方ページへの導線ボタン */
+.dept-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.6rem;
+    font-family: var(--mincho); font-weight: 700; font-size: 0.95rem; color: #fff;
+    padding: 0.85rem 1.6rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 100px;
+    transition: background 0.4s var(--ease), border-color 0.4s, transform 0.4s var(--ease);
+}
+.dept-cta span { color: #FF1A4D; transition: transform 0.4s var(--ease); }
+.dept-cta:hover { background: rgba(211,0,55,0.14); border-color: rgba(211,0,55,0.6); transform: translateY(-2px); }
+.dept-cta:hover span { transform: translateX(4px); }
+
+/* ============================================================
+   要件15：働き方（WORK STYLE）ページ
+   エントランスブックのテイスト（カード／角丸／英字ラベル／図解）を
+   サイトのダーク基調に統一。差し色は紺と喧嘩しない色を採用。
+   ============================================================ */
+:root {
+    --ws-red: #E5544E;
+    --ws-blue: #5B8FD9;
+    --ws-green: #4FB99A;
+    --ws-gold: #E8B84B;
+    --ws-purple: #9B7FD4;
+    --ws-gray: #8C93A6;
+    --ws-card: rgba(22, 28, 44, 0.72);
+    --ws-radius: 16px;
+}
+
+/* アクセント色ユーティリティ（文字色・背景色は使用箇所で指定） */
+.a-red    { --acc: var(--ws-red); }
+.a-blue   { --acc: var(--ws-blue); }
+.a-green  { --acc: var(--ws-green); }
+.a-gold   { --acc: var(--ws-gold); }
+.a-purple { --acc: var(--ws-purple); }
+.a-gray   { --acc: var(--ws-gray); }
+
+/* ── ヒーロー＋タブ ── */
+.ws-hero {
+    text-align: center; background: rgba(15, 20, 34, 0.6);
+    padding-top: clamp(7rem, 14vw, 11rem); padding-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+.ws-eyebrow {
+    font-family: var(--display); letter-spacing: 0.4em; color: #FF1A4D;
+    font-size: 0.95rem; margin-bottom: 1.2rem;
+}
+.ws-hero-title {
+    font-family: var(--mincho); font-weight: 800; color: #fff;
+    font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.35; letter-spacing: 0.04em;
+}
+.ws-hero-lead {
+    font-family: var(--mincho); color: #D5D8E2; margin: 1.6rem auto 0;
+    max-width: 640px; line-height: 2; font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+.ws-tabs {
+    display: inline-flex; gap: 0.6rem; margin-top: clamp(2.2rem, 5vw, 3rem);
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+    padding: 0.5rem; border-radius: 100px; flex-wrap: wrap; justify-content: center;
+}
+.ws-tab {
+    font-family: var(--mincho); font-weight: 700; cursor: pointer;
+    background: none; border: none; color: #B8BCC8;
+    padding: 0.9rem 1.8rem; border-radius: 100px;
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    transition: background 0.4s var(--ease), color 0.3s;
+}
+.ws-tab em {
+    font-family: var(--display); font-style: normal; font-size: 0.7em;
+    letter-spacing: 0.15em; color: var(--ws-red); opacity: 0.9;
+}
+.ws-tab:hover { color: #fff; }
+.ws-tab.is-active {
+    background: linear-gradient(135deg, var(--navy-light), #d3324f);
+    color: #fff;
+}
+.ws-tab.is-active em { color: rgba(255,255,255,0.85); }
+
+/* ── パネル切り替え ── */
+.ws-panel { display: none; }
+.ws-panel.is-active { display: block; animation: wsFade 0.5s var(--ease); }
+@keyframes wsFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ── セクション共通 ── */
+.ws-section { max-width: 1120px; margin: 0 auto; padding: clamp(3.5rem, 8vw, 6rem) clamp(1.3rem, 5vw, 3rem); }
+.ws-head { margin-bottom: clamp(2.2rem, 5vw, 3.5rem); }
+.ws-label, .ws-subhead .ws-label {
+    display: inline-block; font-family: var(--display); font-weight: 600;
+    letter-spacing: 0.25em; font-size: 0.8rem; color: #AEB4C4;
+    padding-top: 0.9rem; position: relative; margin-bottom: 0.8rem;
+}
+.ws-label::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 34px; height: 3px; background: var(--ws-red); border-radius: 2px;
+}
+.ws-title {
+    font-family: var(--mincho); font-weight: 800; color: #fff;
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem); line-height: 1.4; letter-spacing: 0.03em;
+}
+.ws-sub { font-family: var(--mincho); color: #C8CCD6; margin-top: 0.9rem; line-height: 1.9; font-size: clamp(0.92rem, 1.8vw, 1.02rem); }
+.ws-subhead { margin: clamp(2.5rem, 5vw, 3.5rem) 0 1.6rem; }
+.ws-title-sm { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: clamp(1.3rem, 2.8vw, 1.8rem); line-height: 1.4; }
+
+/* ── グリッド ── */
+.ws-grid { display: grid; gap: 1.2rem; }
+.ws-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ws-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* ── 基本カード ── */
+.ws-card {
+    background: var(--ws-card); border: 1px solid var(--line);
+    border-radius: var(--ws-radius); padding: clamp(1.6rem, 3vw, 2.2rem);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+    transition: transform 0.5s var(--ease), border-color 0.5s;
+}
+.ws-card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--acc, var(--ws-blue)) 50%, transparent); }
+.ws-card h3 { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 1.18rem; margin-bottom: 0.6rem; letter-spacing: 0.02em; }
+.ws-card p { font-family: var(--mincho); color: #DDE0E8; line-height: 1.9; font-size: 0.95rem; }
+.ws-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 50%; margin-bottom: 1rem;
+    font-family: var(--display); font-weight: 600; font-size: 1.1rem; color: #fff;
+    background: var(--acc, var(--ws-blue));
+}
+/* ドット付き（横並び）カード */
+.ws-card-dot { display: flex; gap: 1rem; align-items: flex-start; }
+.ws-dot { flex: 0 0 16px; width: 16px; height: 16px; border-radius: 50%; margin-top: 0.45rem; background: var(--acc, var(--ws-blue)); }
+/* アイコン円カード（ストレングス） */
+.ws-card-icon .ws-ring { display: block; width: 52px; height: 52px; border-radius: 50%; margin-bottom: 1.1rem; border: 3px solid var(--acc, var(--ws-blue)); background: color-mix(in srgb, var(--acc, var(--ws-blue)) 14%, transparent); }
+
+/* ── WHY（3ステップ・上部色付き） ── */
+.ws-why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.ws-why-card {
+    background: var(--ws-card); border: 1px solid var(--line); border-radius: var(--ws-radius);
+    overflow: hidden; box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+    padding: 1.8rem; position: relative;
+    border-top: 4px solid var(--acc, var(--ws-blue));
+}
+.ws-why-card::before {
+    content: ''; position: absolute; inset: 0 0 auto 0; height: 120px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--acc, var(--ws-blue)) 16%, transparent), transparent);
+    pointer-events: none;
+}
+.ws-why-no { font-family: var(--display); font-weight: 700; font-size: 2.6rem; color: var(--acc, var(--ws-blue)); line-height: 1; position: relative; }
+.ws-why-card h3 { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 1.2rem; margin: 0.8rem 0; position: relative; }
+.ws-why-card p { font-family: var(--mincho); color: #DDE0E8; line-height: 1.9; font-size: 0.93rem; position: relative; }
+
+/* ── タイムライン＋ゴール ── */
+.ws-day-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.8rem; align-items: start; }
+.ws-timeline { position: relative; padding-left: 0; }
+.ws-tl-item { display: grid; grid-template-columns: 56px 24px 1fr; align-items: start; gap: 0.6rem; position: relative; padding-bottom: 1rem; }
+.ws-tl-item::after { content: ''; position: absolute; left: 67px; top: 22px; bottom: -2px; width: 2px; background: var(--line); }
+.ws-tl-item:last-child::after { display: none; }
+.ws-tl-time { font-family: var(--display); font-weight: 600; color: #fff; font-size: 0.95rem; padding-top: 0.55rem; text-align: right; }
+.ws-tl-dot { width: 14px; height: 14px; border-radius: 50%; margin: 0.7rem auto 0; background: var(--acc, var(--ws-blue)); position: relative; z-index: 1; box-shadow: 0 0 0 4px rgba(15,20,34,0.9); }
+.ws-tl-card { background: var(--ws-card); border: 1px solid var(--line); border-radius: 12px; padding: 0.9rem 1.1rem; }
+.ws-tl-card h4 { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 0.2rem; }
+.ws-tl-card p { font-family: var(--mincho); color: #C8CCD6; font-size: 0.86rem; line-height: 1.7; }
+.ws-goal {
+    background: linear-gradient(160deg, rgba(42,68,128,0.35), rgba(21,27,43,0.6));
+    border: 1px solid var(--line); border-radius: var(--ws-radius); padding: 1.8rem;
+    position: sticky; top: 100px;
+}
+.ws-goal-title { font-family: var(--mincho); font-weight: 700; color: var(--ws-gold); font-size: 1.1rem; margin-bottom: 1.2rem; padding-left: 0.8rem; border-left: 3px solid var(--ws-gold); }
+.ws-goal ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.ws-goal li { position: relative; padding-left: 1.3rem; }
+.ws-goal li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 7px; height: 7px; border-radius: 50%; background: var(--ws-red); }
+.ws-goal strong { display: block; font-family: var(--mincho); color: #fff; font-size: 0.98rem; line-height: 1.6; }
+.ws-goal span { display: block; font-family: var(--mincho); color: #A9AEBE; font-size: 0.82rem; margin-top: 0.2rem; }
+
+/* ── キャリア3ステップ ── */
+.ws-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.ws-step {
+    background: var(--ws-card); border: 1px solid var(--line);
+    border-left: 4px solid var(--acc, var(--ws-blue)); border-radius: var(--ws-radius);
+    padding: 1.6rem 1.6rem 1.8rem; box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+}
+.ws-step-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
+.ws-step-no { font-family: var(--display); font-weight: 700; letter-spacing: 0.1em; color: var(--acc, var(--ws-blue)); font-size: 0.95rem; }
+.ws-step-salary { font-family: var(--mincho); font-weight: 700; color: var(--ws-gold); font-size: 0.92rem; }
+.ws-step h3 { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 1.3rem; margin-bottom: 0.7rem; }
+.ws-step-ex { font-family: var(--mincho); color: #C8CCD6; font-size: 0.88rem; line-height: 1.7; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 0.6rem 0.8rem; }
+
+/* ── 同心円相関図 ── */
+.ws-relation { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.8rem; align-items: center; margin-top: 2rem; background: var(--ws-card); border: 1px solid var(--line); border-radius: var(--ws-radius); padding: clamp(1.6rem, 3vw, 2.4rem); }
+.ws-relation-text h4 { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 1.4rem; margin-bottom: 0.6rem; }
+.ws-relation-text > p { font-family: var(--mincho); color: #C8CCD6; line-height: 1.9; font-size: 0.95rem; margin-bottom: 1.4rem; }
+.ws-relation-legend { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.ws-relation-legend li { display: flex; align-items: center; gap: 0.6rem; font-family: var(--mincho); color: #DDE0E8; font-size: 0.92rem; }
+.ws-relation-legend i { width: 12px; height: 12px; border-radius: 50%; background: var(--acc, var(--ws-blue)); flex: 0 0 12px; }
+.ws-relation-chart svg { width: 100%; height: auto; display: block; }
+.ws-svg-center { font-family: var(--mincho); font-weight: 700; fill: #fff; font-size: 18px; }
+.ws-svg-chip text { font-family: var(--mincho); fill: #fff; font-size: 13px; }
+.ws-svg-chip rect { stroke-width: 1.5; }
+.ws-svg-blue rect  { fill: rgba(91,143,217,0.22); stroke: var(--ws-blue); }
+.ws-svg-green rect { fill: rgba(79,185,154,0.20); stroke: var(--ws-green); }
+.ws-svg-red rect   { fill: rgba(229,84,78,0.20); stroke: var(--ws-red); }
+
+/* ── 本音トーク ── */
+.ws-voice { background: var(--ws-card); border: 1px solid var(--line); border-radius: var(--ws-radius); padding: 1.7rem; box-shadow: 0 14px 34px rgba(0,0,0,0.28); display: flex; flex-direction: column; }
+.ws-voice-head { display: flex; align-items: center; gap: 0.9rem; padding-bottom: 1rem; margin-bottom: 1.1rem; border-bottom: 1px solid var(--line); }
+.ws-voice-avatar { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--acc, var(--ws-blue)); background: color-mix(in srgb, var(--acc, var(--ws-blue)) 18%, transparent); }
+.ws-voice-head strong { display: block; font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 1.05rem; }
+.ws-voice-head small { font-family: var(--mincho); color: #A9AEBE; font-size: 0.78rem; }
+.ws-voice-quote { font-family: var(--mincho); color: #EDEDF0; font-style: italic; line-height: 1.8; font-size: 0.95rem; margin-bottom: 1.1rem; }
+.ws-voice-tag { align-self: flex-start; font-family: var(--mincho); font-weight: 700; font-size: 0.8rem; color: #fff; background: var(--acc, var(--ws-blue)); padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 0.8rem; }
+.ws-voice-answer { font-family: var(--mincho); color: #DDE0E8; line-height: 1.85; font-size: 0.9rem; }
+
+/* ── 働く条件テーブル ── */
+.ws-cond { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+.ws-cond-row { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; align-items: start; background: var(--ws-card); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.4rem; }
+.ws-cond-k { font-family: var(--mincho); color: #A9AEBE; font-size: 0.9rem; }
+.ws-cond-v { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: 0.98rem; line-height: 1.6; }
+.ws-cond-v small { font-weight: 400; color: #C8CCD6; font-size: 0.82rem; }
+
+/* ── OUR TEAM ステータス＋チップ ── */
+.ws-stats .ws-stat { background: var(--ws-card); border: 1px solid var(--line); border-radius: var(--ws-radius); padding: 1.8rem; text-align: center; box-shadow: 0 14px 34px rgba(0,0,0,0.28); }
+.ws-stat-num { display: block; font-family: var(--mincho); font-weight: 800; color: var(--acc, var(--ws-blue)); font-size: clamp(2rem, 4.5vw, 2.8rem); line-height: 1.1; margin-bottom: 0.6rem; }
+.ws-stat strong { display: block; font-family: var(--mincho); color: #fff; font-size: 1.05rem; }
+.ws-stat small { display: block; font-family: var(--mincho); color: #A9AEBE; font-size: 0.82rem; margin-top: 0.3rem; }
+.ws-chips-box { margin-top: 1.4rem; background: var(--ws-card); border: 1px solid var(--line); border-radius: var(--ws-radius); padding: 1.6rem; }
+.ws-chips-title { font-family: var(--mincho); font-weight: 700; color: var(--ws-red); font-size: 0.95rem; margin-bottom: 1rem; }
+.ws-chips { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.ws-chip { font-family: var(--mincho); font-size: 0.88rem; color: #EDEDF0; padding: 0.5rem 1.1rem; border-radius: 100px; border: 1px solid var(--acc, var(--ws-gray)); background: color-mix(in srgb, var(--acc, var(--ws-gray)) 12%, transparent); }
+
+/* ── 採用CTA ── */
+.ws-cta { text-align: center; padding: clamp(3.5rem, 8vw, 6rem) 1.3rem clamp(4.5rem, 9vw, 7rem); }
+.ws-cta-lead { font-family: var(--mincho); font-weight: 700; color: #fff; font-size: clamp(1.3rem, 3vw, 2rem); margin-bottom: 2rem; line-height: 1.6; }
+
+/* ── レスポンシブ ── */
+@media (max-width: 900px) {
+    .ws-day-wrap { grid-template-columns: 1fr; gap: 1.4rem; }
+    .ws-goal { position: static; }
+    .ws-relation { grid-template-columns: 1fr; }
+    .ws-relation-chart { max-width: 420px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 768px) {
+    .ws-why { grid-template-columns: 1fr; }
+    .ws-steps { grid-template-columns: 1fr; }
+    .ws-grid-3 { grid-template-columns: 1fr; }
+    .ws-cond { grid-template-columns: 1fr; }
+    .ws-tab { padding: 0.75rem 1.2rem; }
+}
+@media (max-width: 560px) {
+    .ws-grid-2 { grid-template-columns: 1fr; }
+    .ws-tabs { width: 100%; }
+    .ws-tab { flex: 1 1 auto; justify-content: center; }
+}
