@@ -1245,3 +1245,109 @@ body::before {
 .phil-block:not(.vision-block) .phil-mini p {
     font-size: 1rem !important;
 }
+
+/* ============================================================
+   要件9：VISION 3項目をPC/モニターで拡大（1行表示は維持）
+   ブロック幅を広げて列を太くし、フォント上限を引き上げる。
+   携帯（901px未満）は従来どおり（別ルールで指定済み）。
+   ============================================================ */
+@media (min-width: 901px) {
+    .vision-block { max-width: 1200px !important; }
+    .vision-block .phil-mini p {
+        font-size: clamp(0.55rem, 1.04vw, 1rem) !important;
+    }
+    .vision-block .phil-mini h4 { font-size: 1.5rem !important; }
+}
+
+/* ============================================================
+   要件10：提供サービス一覧 — 説明文の下に写真スロット
+   ============================================================ */
+.service-reel-photo {
+    margin-top: 1.5rem;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--line);
+    background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px),
+        linear-gradient(135deg, rgba(25,47,97,0.15), rgba(211,0,55,0.08));
+    display: flex; align-items: center; justify-content: center;
+}
+.service-reel-card { display: flex; flex-direction: column; }
+.service-reel-desc { flex: 1 1 auto; }
+
+/* ============================================================
+   要件11：数字で見るSAI — 平均年齢・男女比（%表示）
+   ============================================================ */
+.num-people {
+    max-width: 1100px;
+    margin: 1.5rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
+    gap: 1.5rem;
+}
+.num-people-item {
+    background: var(--black-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+    display: flex; flex-direction: column; gap: 1rem;
+    align-items: center; justify-content: center; text-align: center;
+}
+.num-people-label {
+    font-family: var(--mincho); font-size: 1rem;
+    color: #DADDE5; letter-spacing: 0.15em;
+}
+.num-people-val {
+    font-family: var(--display);
+    font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1;
+    background: linear-gradient(160deg, var(--ink), var(--navy-light));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.num-people-unit {
+    font-size: 0.4em; margin-left: 0.15em;
+    -webkit-text-fill-color: #FFFFFF; color: #FFFFFF;
+}
+.num-gender { gap: 1.2rem; }
+.gender-bar {
+    display: flex; width: 100%; max-width: 480px;
+    height: 16px; border-radius: 8px; overflow: hidden;
+    background: rgba(255,255,255,0.06);
+}
+.gender-seg { height: 100%; }
+.gender-male   { background: linear-gradient(90deg, var(--navy-light), #3F63B8); }
+.gender-female { background: linear-gradient(90deg, #D3324F, #FF5A78); }
+.gender-legend {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1.4rem; font-size: 0.95rem; color: #DADDE5;
+}
+.gender-legend span { display: inline-flex; align-items: center; gap: 0.5rem; }
+.gender-legend small { color: var(--ink-dim); font-size: 0.8em; }
+.gender-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.gender-dot.male   { background: #3F63B8; }
+.gender-dot.female { background: #FF5A78; }
+
+/* ============================================================
+   要件12：取引先企業を縦に順番で表示
+   ============================================================ */
+.client-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 0.55rem;
+}
+.client-list li {
+    position: relative; padding-left: 1.1rem; line-height: 1.6;
+}
+.client-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.62em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--red);
+}
+
+/* 要件11/12 レスポンシブ */
+@media (max-width: 768px) {
+    .num-people { grid-template-columns: 1fr; gap: 1.2rem; }
+    .gender-legend { font-size: 0.85rem; gap: 1rem; }
+}
+
+/* 要件13：VALUE(6つの価値観)の3列が1024px付近で横はみ出しする不具合を修正
+   （列を minmax(0,1fr) で1/3に固定。901px以下は既存の1カラム） */
+@media (min-width: 901px) {
+    .value-grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
